@@ -1,15 +1,30 @@
 (function($) {
 
   function getStatistics($url) {
-    var $url = "https://" + $url + "/json/statistics";
-    $.getJSON($url).done(function(data) {
-      $.each(data.items, function(i, item) {
-        console.log(item);
-      });
+    $.ajax({
+      type: 'GET',
+      url: $url,
+      success: function (data) {
+        var $players = data.players,
+            $teams = data.teams,
+            $games = data.games;
+
+        return "<div class='json-players'><label>Players: </label>" + $players + "</div><div class='json-teams'><label>Teams: </label>" + $teams + "</div>";
+
+      }
     });
   };
 
-  getStatistics("thessaloniki.psak.3x3.gr");
+  // Show statistics after register button
+  $(".card-body").each(function(){
+    var el = $(this),
+        button = el.find(".ready-json"),
+        $url = button.attr("href"),
+        $results = getStatistics($url + "/json/statistics");
+
+    el.append($results);
+
+  });
 
 })(jQuery);
 
