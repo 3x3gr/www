@@ -1,28 +1,24 @@
 (function($) {
 
   function getStatistics($url) {
+    var result = "";
     $.ajax({
-      type: 'GET',
       url: $url,
-      success: function (data) {
-        var $players = data.players,
-            $teams = data.teams,
-            $games = data.games;
-
-        return "<div class='json-players'><label>Players: </label>" + $players + "</div><div class='json-teams'><label>Teams: </label>" + $teams + "</div>";
-
+      async: false,
+      success:function(data) {
+result = "<hr><div class='json-players'>" + data.players + " Players</div><div class='json-teams'>" + data.teams + " Teams</div>";
       }
-    });
+   });
+   return result;
   };
 
   // Show statistics after register button
-  $(".card-body").each(function(){
+  $(".ready-json").each(function(){
     var el = $(this),
-        button = el.find(".ready-json"),
-        $url = button.attr("href"),
+        $url = el.attr("href"),
         $results = getStatistics($url + "/json/statistics");
 
-    el.append($results);
+    el.after($($results));
 
   });
 
