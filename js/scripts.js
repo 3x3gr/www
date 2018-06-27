@@ -4,7 +4,7 @@
     var result = "";
     $.ajax({
       url: $url,
-      async: false,
+      async: true,
       success:function(data) {
         if (data.players != 0) {
           $players = "<div class='json-players'>" + data.players + " Players</div>";
