@@ -9,13 +9,13 @@
         if (data.players != 0) {
           $players = "<div class='json-players'>" + data.players + " Players</div>";
         } else {
-          $players = "<div class='json-players'> </div>";
+          $players = "<div class='json-players visibility-hidden'>Waiting for Players</div>";
         }
 
         if (data.teams != 0) {
           $teams = "<div class='json-teams'>" + data.teams + " Teams</div>";
         } else {
-          $teams = "<div class='json-teams'> </div>";
+          $teams = "<div class='json-teams visibility-hidden'>Waiting for Teams</div>";
         }
 
         result = "<hr>" + $players + $teams;
