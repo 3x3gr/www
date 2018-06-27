@@ -6,7 +6,19 @@
       url: $url,
       async: false,
       success:function(data) {
-result = "<hr><div class='json-players'>" + data.players + " Players</div><div class='json-teams'>" + data.teams + " Teams</div>";
+        if (data.players != 0) {
+          $players = "<div class='json-players'>" + data.players + " Players</div>";
+        } else {
+          $players = "";
+        }
+
+        if (data.teams != 0) {
+          $teams = "<div class='json-teams'>" + data.teams + " Teams</div>";
+        } else {
+          $teams = "";
+        }
+
+        result = "<hr>" + $players + $teams;
       }
    });
    return result;
